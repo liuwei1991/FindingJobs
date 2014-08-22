@@ -1,5 +1,10 @@
 package leetCode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class SortList {
 	 class ListNode {
 		 int val;
@@ -10,53 +15,40 @@ public class SortList {
 		 }
 	}
 	 
-	public ListNode sortList(ListNode head) {
-		if(head == null || head.next == null){
+	 /**
+	  * 投机取巧的方法
+	  * @param head
+	  * @return
+	  */
+	public ListNode sortList1(ListNode head) {
+		List<Integer> list = new ArrayList<Integer>();
+		if(head ==null){
 			return head;
 		}
-		ListNode mark = head;
-		ListNode current = head.next;
-		ListNode leftHead = null;
-		ListNode rightHead = null;
-		
-		while(current != null){
-			ListNode tmp = current.next;
-			if(current.val < mark.val){
-				if(leftHead == null){
-					leftHead = current;
-					leftHead.next = null;
-				}else{
-					current.next = leftHead;
-					leftHead = current;
-				}
-			}else{
-				if(rightHead == null){
-					rightHead = current;
-					rightHead.next = null;
-				}else{
-					current.next = rightHead;
-					rightHead = current;
-				}
-			}
-			current = tmp;
+		ListNode ln = head;
+		while(ln!=null){
+			list.add(ln.val);
+			ln=ln.next;
 		}
-		
-		leftHead = sortList(leftHead);
-		rightHead = sortList(rightHead);
-		if(leftHead == null){
-			leftHead = mark;
-		}else{
-			ListNode tmp = leftHead;
-			while(tmp.next!=null){
-				tmp = tmp.next;
-			}
-			tmp.next = mark;
+		Collections.sort(list);
+		ln = head;
+		int i=0;
+		while(ln!=null){
+			ln.val = list.get(i);
+			ln=ln.next;
+			i++;
 		}
-		
-		mark.next = rightHead;
-		return leftHead;
+		return head;
 	}
 	
+	public ListNode sortList(ListNode head) {
+		List<Integer> list = new ArrayList<Integer>();
+		if(head ==null){
+			return head;
+		}
+		
+		return head;
+	}
 	public static void main(String args[]){
 		SortList sl = new SortList();
 		ListNode ln = sl.new ListNode(1);
