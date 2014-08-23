@@ -70,7 +70,7 @@ public class ListSetMapQueueStack {
 		
 		PriorityBlockingQueue<String> pq = new PriorityBlockingQueue<String>();
 		
-		DelayQueue<String> dq = new DelayQueue<String>(); 
+//		DelayQueue<String> dq = new DelayQueue<String>(); 
 		
 	}
 
