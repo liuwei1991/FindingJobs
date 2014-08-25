@@ -32,6 +32,8 @@ public class WildcardMatching {
 		if (s == null || p == null) {
 			return false;
 		}
+		int count = 0;
+		
 		int i= 0;
 		for (i = 0; i < s.length() && i<p.length(); i++) {
 			if(s.charAt(i)==p.charAt(i)||p.charAt(i)=='?'){
