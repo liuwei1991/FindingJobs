@@ -4,10 +4,6 @@ public class ClassB extends AbstractClassA {
 	int price = 1;
 	public String name = "car";
 	
-	@Override
-	public void method() {
-		System.out.println("ClassB");
-	}
 	
 	public class innerClass{
 		public String kind = name;
@@ -16,5 +12,12 @@ public class ClassB extends AbstractClassA {
 		public void m1(){
 			int a = ClassB.this.price;
 		}
+	}
+
+
+	@Override
+	public void method() {
+		// TODO Auto-generated method stub
+		
 	}
 }
