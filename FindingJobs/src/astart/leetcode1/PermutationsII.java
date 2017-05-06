@@ -12,26 +12,26 @@ public class PermutationsII {
 		if(nums==null || nums.length==0){
 			return result;
 		}
-		Arrays.sort(nums);
 		flags = new boolean[nums.length];
-		this.solve(nums, new ArrayList<Integer>(), 0);
+		Arrays.sort(nums);
+		this.solve(new ArrayList<Integer>(), nums);
 		return result;
     }
 	
-	public void solve(int[] nums, List<Integer> tmp,int level){
-		if(level==nums.length){
+	public void solve(List<Integer> tmp,int[] nums){
+		if(tmp.size()==nums.length){
 			result.add(new ArrayList<Integer>(tmp));
 			return;
 		}
 		for(int i=0;i<nums.length;i++){
-			if(flags[i]||i>=1 && nums[i]==nums[i-1] && flags[i-1]){
+			if(this.flags[i] || i>=1 && nums[i-1]==nums[i] && this.flags[i-1]){
 				continue;
 			}
-			flags[i] = true;	
+			this.flags[i] = true;
 			tmp.add(nums[i]);
-			this.solve(nums, tmp, level+1);
-			tmp.remove(level);
-			flags[i]=false;
+			this.solve(tmp, nums);
+			tmp.remove(tmp.size()-1);
+			this.flags[i] = false;
 		}
 	}
 	

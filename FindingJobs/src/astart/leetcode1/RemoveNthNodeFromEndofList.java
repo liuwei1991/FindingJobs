@@ -11,33 +11,30 @@ public class RemoveNthNodeFromEndofList {
 	}
 
 	public ListNode removeNthFromEnd(ListNode head, int n) {
-		if(head==null ||n<=0){
+		ListNode fast = head;
+		ListNode slow = head;
+		int step = 0;
+		for (; step <n && fast!=null; step++) {
+			fast = fast.next;
+		}
+		if(step==n && fast==null){
+			return head.next;
+		}else if(fast==null){
 			return head;
 		}
-		ListNode ahead = head;
-		ListNode behind = head;
-		int step = 0;
-		while(ahead!=null && step<n){
-			ahead = ahead.next;
-			step+=1;
+
+		while (fast.next != null) {
+			fast = fast.next;
+			slow = slow.next;
 		}
-		if(ahead==null && step==n){
-			return head.next;
-		}else if(ahead==null){
-			return head.next;
-		}
-		while(ahead.next!=null){
-			ahead=ahead.next;
-			behind = behind.next;
-		}
-		behind.next = behind.next.next;
+		slow.next = slow.next.next;
 		return head;
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		RemoveNthNodeFromEndofList rn = new RemoveNthNodeFromEndofList();
 		ListNode head = rn.new ListNode(1);
-		head.next =  rn.new ListNode(2);
+		head.next = rn.new ListNode(2);
 		ListNode result = rn.removeNthFromEnd(head, 1);
 		System.out.println("1");
 	}
