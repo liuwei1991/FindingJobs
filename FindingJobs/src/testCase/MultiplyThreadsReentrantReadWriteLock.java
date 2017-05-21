@@ -25,13 +25,14 @@ public class MultiplyThreadsReentrantReadWriteLock {
 					itemCount++;
 					System.out
 							.println("producer item count up to " + itemCount);
-					lock.writeLock().unlock();
 					Random r = new Random(1000);
 
 					Thread.sleep(r.nextInt(1000));
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					break;
+				} finally{
+					lock.writeLock().unlock();
 				}
 			}
 		}

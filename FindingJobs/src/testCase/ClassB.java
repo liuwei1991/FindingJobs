@@ -20,4 +20,11 @@ public class ClassB extends AbstractClassA {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void method2() {
+		// TODO Auto-generated method stub
+		
+	}
 }

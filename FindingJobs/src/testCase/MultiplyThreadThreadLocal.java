@@ -9,6 +9,7 @@ public class MultiplyThreadThreadLocal {
 			return  0;
 		}
 	};
+	
 	public static void increment(){
 		value.set(value.get()+1);
 	}
@@ -34,6 +35,7 @@ public class MultiplyThreadThreadLocal {
 			}
 		}
 	}
+	
 	public static void main(String[] args){
 		MultiplyThreadThreadLocal mt = new MultiplyThreadThreadLocal();
 		ThreadCount tc = mt.new ThreadCount();
