@@ -92,7 +92,7 @@ public class MultiThread{
 				return 1;
 			}
 		};
-//		Arrays.sort(s);
+		Arrays.sort(s,cmp);
 		Collections.sort(s,cmp);
 		
 	}
