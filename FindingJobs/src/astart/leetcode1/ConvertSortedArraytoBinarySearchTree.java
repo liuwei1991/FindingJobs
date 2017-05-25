@@ -12,21 +12,20 @@ public class ConvertSortedArraytoBinarySearchTree {
 	}
 
 	public TreeNode sortedArrayToBST(int[] nums) {
-		if(nums==null || nums.length==0){
+		if (nums == null || nums.length == 0) {
 			return null;
 		}
-		return sortedArrayToBST( nums,  0, nums.length-1);
+		return this.solve(nums, 0, nums.length - 1);
 	}
-	
-	public TreeNode sortedArrayToBST(int[] nums, int start,int end){
-		if(start>end){
+
+	public TreeNode solve(int[] nums, int start, int end) {
+		if (start > end) {
 			return null;
 		}
-		int mid = (start+end)/2;
-		TreeNode result = new TreeNode(nums[mid]);
-		result.left = sortedArrayToBST(nums,start,mid-1);
-		result.right = sortedArrayToBST(nums,mid+1,end);
-		return result;
+		TreeNode head = new TreeNode(nums[(start + end) / 2]);
+		head.left = this.solve(nums, start, (start + end) / 2 - 1);
+		head.right = this.solve(nums, (start + end) / 2 + 1, end);
+		return head;
 	}
 
 }

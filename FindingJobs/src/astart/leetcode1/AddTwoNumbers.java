@@ -9,45 +9,45 @@ public class AddTwoNumbers {
 			val = x;
 		}
 	}
-	
+
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode r = null;
-		/**
-		 * 注意：r已经被改变，返回的必须是r的头指针。所以要有一个fr记录头指针为主
-		 */
-		ListNode fr = null;
-		int increase = 0;
-		while(l1!=null){
-			int value = 0;
-			if(l2!=null){
-				value = (l1.val+l2.val+increase)%10;
-				increase = (l1.val+l2.val+increase)/10;
-				l2 = l2.next;
-			}else{
-				value = (l1.val+increase)%10;
-				increase = (l1.val+increase)/10;
+		ListNode result = null;
+		ListNode cur = null;
+		ListNode c1 = l1;
+		ListNode c2 = l2;
+		int incre = 0;
+		while (c1 != null || c2 != null) {
+			int a1 = 0;
+			int a2 = 0;
+			if (c1 != null) {
+				a1 = c1.val;
+				c1 = c1.next;
 			}
-			if(r==null){
-				r = new ListNode(value);
-				fr = r;
-			}else{
-				r.next = new ListNode(value);
-				r = r.next;
+			if (c2 != null) {
+				a2 = c2.val;
+				c2 = c2.next;
 			}
-			l1 = l1.next;
+			ListNode nextNode = new ListNode(0);
+			if (a1 + a2 + incre < 10) {
+				nextNode.val = a1 + a2 + incre;
+				incre = 0;
+			} else {
+				nextNode.val = a1 + a2 + incre - 10;
+				incre = 1;
+			}
+			if (cur == null) {
+				result = nextNode;
+				cur = nextNode;
+			} else {
+				cur.next = nextNode;
+				cur = cur.next;
+			}
+
 		}
-		while(l2!=null){
-			int value = (l2.val+increase)%10;
-			increase = (l2.val+increase)/10;
-			r.next = new ListNode(value);
-			r = r.next;
-			l2 = l2.next;
+		if (incre == 1) {
+			cur.next = new ListNode(1);
 		}
-		if(increase!=0){
-			r.next = new ListNode(increase);
-		}
-		return fr;
+		return result;
 	}
-	
-	
+
 }

@@ -14,33 +14,29 @@ public class ValidateBinarySearchTree {
 	}
 
 	public boolean isValidBST(TreeNode root) {
-		return this.solve(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-	}
-	
-	
-	
-	public boolean solve(TreeNode root, int min, int max) {
-		if (root == null) {
+		if(root==null){
 			return true;
 		}
-		if (root.val >= max || root.val <= min) {
+		return this.solve(root, Long.MAX_VALUE, Long.MIN_VALUE);
+	}
+	
+	public boolean solve(TreeNode node,long max,long min){
+		if(node.val<=min || node.val>=max){
 			return false;
 		}
-		if (root.left != null) {
-			int val = root.left.val;
-			if (val >= root.val || !this.solve(root.left, min, root.val)) {
+		if(node.left!=null){
+			if(!this.solve(node.left,node.val, min)){
 				return false;
 			}
 		}
-		if (root.right != null) {
-			int val = root.right.val;
-			if (val <= root.val || !this.solve(root.right, root.val, max)) {
+		if(node.right!=null){
+			if(!this.solve(node.right,max, node.val)){
 				return false;
 			}
 		}
 		return true;
 	}
-
+	
 	public static void main(String[] args){
 		ValidateBinarySearchTree t= new ValidateBinarySearchTree();
 		TreeNode root = t.new TreeNode(2);

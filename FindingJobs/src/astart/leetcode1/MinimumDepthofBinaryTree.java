@@ -1,5 +1,8 @@
 package astart.leetcode1;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MinimumDepthofBinaryTree {
 	public class TreeNode {
 		int val;
@@ -11,25 +14,34 @@ public class MinimumDepthofBinaryTree {
 		}
 	}
 
-	private int result = Integer.MAX_VALUE;
 	public int minDepth(TreeNode root) {
-		if(root==null){
+		if (root == null) {
 			return 0;
 		}
-		this.solve(root,0);
-		return result;
-	}
-	
-	public void solve(TreeNode root,int depth){
-		if(root.left==null&&root.right ==null){
-			result = Math.min(result, depth+1);
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		q.add(root);
+		q.add(null);
+		int result = 1;
+		while (!q.isEmpty()) {
+			TreeNode cur = q.poll();
+			if (cur == null && !q.isEmpty()) {
+				q.add(null);
+				result += 1;
+				continue;
+			} else if (cur == null && q.isEmpty()) {
+				break;
+			}
+			if (cur.left == null && cur.right == null) {
+				return result;
+			}
+			if (cur.left != null) {
+				q.add(cur.left);
+			}
+			if (cur.right != null) {
+				q.add(cur.right);
+			}
 		}
-		if(root.left!=null){
-			this.solve(root.left, depth+1);
-		}
-		if(root.right!=null){
-			this.solve(root.right, depth+1);
-		}
+		return 1;
 	}
 
 }

@@ -11,18 +11,26 @@ public class ReverseLinkedList {
 	}
 
 	public ListNode reverseList(ListNode head) {
-		if(head==null||head.next==null){
+		if(head==null){
 			return head;
 		}
 		ListNode pre = head;
-		ListNode cur = head.next;
-		head.next = null;  //注意不要弄成循环，head。next一定要赋值null
+		ListNode cur = pre.next;
+		pre.next = null;
+		
 		while(cur!=null){
-			ListNode next = cur.next;
+			ListNode tmp = cur.next;
 			cur.next = pre;
 			pre = cur;
-			cur = next;
+			cur = tmp;
 		}
 		return pre;
+	}
+	
+	public static void main(String args[]){
+		ReverseLinkedList rl = new ReverseLinkedList();
+		ListNode head = rl.new ListNode(1);
+		head.next = rl.new ListNode(2);
+		rl.reverseList(head);
 	}
 }
